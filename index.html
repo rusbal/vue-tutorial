@@ -7,7 +7,7 @@
       el: '#app',
       data: {
         message: 'Hello 123!',
-        toys: []
+        toys: [],
       },
       mounted () {
         for (let x = 0; x < 3; x++) {
@@ -18,8 +18,13 @@
         addToy () {
           this.toys.push({
             name: (Math.random() + 1).toString(36).substring(7),
-            price: Math.floor(Math.random()*(100) + 10)
+            price: Math.floor(Math.random()*(100) + 10),
+            quantity: Math.floor(Math.random()*(10) + 2)
           })
+        },
+        buyToy (item) {
+          let x = Object.keys(this.toys)
+          console.log(x)
         },
         deleteToy (item) {
           this.toys.splice(this.toys.indexOf(item), 1)
@@ -39,8 +44,13 @@
         <div>
           Name: {{ item.name }}
 
+          <button @click="buyToy(item)">Buy</button>
           <button @click="deleteToy(item)">Delete</button>
           <br />
+
+          Available: {{ item.quantity }}
+          <br />
+
           Price: {{ item.price }}
         </div>
       </li>
