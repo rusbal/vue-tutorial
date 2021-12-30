@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script type="module">
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello 123!',
+        toys: []
+      },
+      mounted () {
+        for (let x = 0; x < 3; x++) {
+          this.addToy()
+        }
+      },
+      methods: {
+        addToy () {
+          this.toys.push({
+            name: (Math.random() + 1).toString(36).substring(7),
+            price: Math.random()
+          })
+        }
+      }
+    })
+  </script>
+</head>
+<body>
+  <h1>Hello world</h1>
+  <div id="app">
+    {{ message }}
+
+    <h2>List of Toys</h1>
+    <ul>
+      <li v-for="item in toys" :key="item.message">
+        <div>
+          Name: {{ item.name }}
+          <br />
+          Price: {{ item.price }}
+        </div>
+      </li>
+    </ul>
+    <button @click="addToy">Add Toy</button>
+  </div>
+</body>
+</html>
